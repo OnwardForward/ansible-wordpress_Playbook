@@ -1,0 +1,20 @@
+- name: Download WordPress
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html/
+    remote_src: True
+  args:
+    creates: /var/www/html/index.php
+
+- name: Move files to /var/www/html
+  shell: "mv -f /var/www/html/wordpress/* /var/www/html/ ; rm -rf /var/www/html/wordpress"
+  args:
+    creates: /var/www/html/index.php
+
+- name: Change file ownership
+  file:
+    path: /var/www/html
+    owner: apache
+    group: apache
+    state: directory
+    recurse: yes

@@ -1,0 +1,4 @@
+php_version: "7.3"
+local_mysql: false
+mysql_user: "wordpress"
+mysql_password: "password"
